@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Mon Sep 19 14:02:58 EDT 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0157-439d-81fe-000000609f10 
+on database directory memory:D:\workspace_mars\lingo\lingo-jpa\DemoDB  with class loader sun.misc.Launcher$AppClassLoader@a57993 
+Loaded from file:/C:/Users/Win7/.m2/repository/org/apache/derby/derby/10.9.1.0/derby-10.9.1.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_45-b15
+user.dir=D:\workspace_mars\lingo\lingo-jpa
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

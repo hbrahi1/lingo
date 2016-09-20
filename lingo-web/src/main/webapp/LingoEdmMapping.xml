@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JPAEDMMappingModel
+	xmlns="http://www.apache.org/olingo/odata2/jpa/processor/api/model/mapping">
+	<PersistenceUnit name="ca.bra.lingo.model">
+		<JPAEntityTypes>
+			<JPAEntityType name="Customer">
+				<EDMEntitySet>Customer</EDMEntitySet>
+				<JPAAttributes>
+					<JPAAttribute name="customerId">CustomerId</JPAAttribute>
+					<JPAAttribute name="firstName">FirstName</JPAAttribute>
+					<JPAAttribute name="lastName">NomDeFamille</JPAAttribute>
+				</JPAAttributes>
+			</JPAEntityType>
+		</JPAEntityTypes>
+		<JPAEmbeddableTypes>
+		</JPAEmbeddableTypes>
+	</PersistenceUnit>
+</JPAEDMMappingModel>
