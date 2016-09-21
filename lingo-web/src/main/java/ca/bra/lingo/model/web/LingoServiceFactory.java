@@ -4,12 +4,22 @@ import javax.persistence.EntityManagerFactory;
 
 import org.apache.olingo.odata2.api.ODataCallback;
 import org.apache.olingo.odata2.api.ODataDebugCallback;
+import org.apache.olingo.odata2.api.ep.EntityProvider;
+import org.apache.olingo.odata2.api.exception.ODataApplicationException;
+import org.apache.olingo.odata2.api.processor.ODataErrorCallback;
+import org.apache.olingo.odata2.api.processor.ODataErrorContext;
+import org.apache.olingo.odata2.api.processor.ODataResponse;
 import org.apache.olingo.odata2.core.exception.ODataRuntimeException;
 import org.apache.olingo.odata2.jpa.processor.api.ODataJPAContext;
 import org.apache.olingo.odata2.jpa.processor.api.ODataJPAServiceFactory;
 import org.apache.olingo.odata2.jpa.processor.api.exception.ODataJPARuntimeException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LingoServiceFactory extends ODataJPAServiceFactory{
+	
+	private static final Logger logger =
+			LoggerFactory.getLogger(LingoServiceFactory.class);
 
 	private static final String PERSISTENCE_UNIT_NAME = "ca.bra.lingo.model";
 	
@@ -40,11 +50,17 @@ public class LingoServiceFactory extends ODataJPAServiceFactory{
 	}
 	
 	
-	private final class ScenarioErrorCallback implements ODataDebugCallback {
-		public boolean isDebugEnabled()
-		  { 
-		    return true; 
-		  }
+	private final class ScenarioErrorCallback implements ODataErrorCallback {
+//		public boolean isDebugEnabled()
+//		  { 
+//		    return true; 
+//		  }
+
+		public ODataResponse handleError(ODataErrorContext context) throws ODataApplicationException
+		{
+			logger.error(context.getException().getClass().getName() + ":" + context.getMessage());
+	        return EntityProvider.writeErrorDocument(context);
+		}
 	}
 	
 	private final class ScenarioDebugCallback implements ODataDebugCallback {

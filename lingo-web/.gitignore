@@ -1,0 +1,9 @@
+src/main/webapp/WEB-INF/lib
+*.log
+*.class
+target/
+.settings
+.classpath
+.project
+/bin
+/.apt_generated/
