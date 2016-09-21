@@ -2,6 +2,8 @@ package ca.bra.lingo.model.web;
 
 import javax.persistence.EntityManagerFactory;
 
+import org.apache.olingo.odata2.api.ODataCallback;
+import org.apache.olingo.odata2.api.ODataDebugCallback;
 import org.apache.olingo.odata2.core.exception.ODataRuntimeException;
 import org.apache.olingo.odata2.jpa.processor.api.ODataJPAContext;
 import org.apache.olingo.odata2.jpa.processor.api.ODataJPAServiceFactory;
@@ -26,5 +28,30 @@ public class LingoServiceFactory extends ODataJPAServiceFactory{
 			throw new ODataRuntimeException(e);
 		}
 	}
+	
+	@Override
+	public <T extends ODataCallback> T getCallback(Class<T> callbackInterface)
+	{
+		  return (T) (callbackInterface.isAssignableFrom(ScenarioErrorCallback.class) ? 
+	    new ScenarioErrorCallback() : 
+	      callbackInterface.isAssignableFrom(ODataDebugCallback.class) ? 
+	        new ScenarioDebugCallback() : 
+	        super.getCallback(callbackInterface));
+	}
+	
+	
+	private final class ScenarioErrorCallback implements ODataDebugCallback {
+		public boolean isDebugEnabled()
+		  { 
+		    return true; 
+		  }
+	}
+	
+	private final class ScenarioDebugCallback implements ODataDebugCallback {
+		  public boolean isDebugEnabled()
+		  { 
+		    return true; 
+		  }
+		}
 
 }
